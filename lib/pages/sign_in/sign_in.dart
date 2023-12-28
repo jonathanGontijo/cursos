@@ -18,23 +18,39 @@ class _SignInState extends State<SignIn> {
         child: Scaffold(
           backgroundColor: Colors.white,
           appBar: buildAppBar(),
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              buildThirdPartyLogin(
-                context,
-              ),
-              resuableText("or use your email account login"),
-              Container(
-                margin: EdgeInsets.only(top: 66.h),
-                child: Column(
-                  //crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    resuableText("Email"),
-                  ],
+          body: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                buildThirdPartyLogin(
+                  context,
                 ),
-              )
-            ],
+                Center(child: reusableText("or use your email account login")),
+                Container(
+                  margin: EdgeInsets.only(top: 66.h),
+                  padding: EdgeInsets.only(left: 25.w, right: 25.w),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      reusableText("Email"),
+                      SizedBox(
+                        height: 5.h,
+                      ),
+                      buildTextField("Enter with your email", "email", "user"),
+                      reusableText("Password"),
+                      SizedBox(
+                        height: 5.h,
+                      ),
+                      buildTextField(
+                          "Enter with your password", "password", "lock"),
+                    ],
+                  ),
+                ),
+                forgotPassword(),
+                buildLogInAndRegButton("Log In", "login"),
+                buildLogInAndRegButton("Register", "register"),
+              ],
+            ),
           ),
         ),
       ),

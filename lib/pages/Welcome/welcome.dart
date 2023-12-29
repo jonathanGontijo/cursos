@@ -1,4 +1,4 @@
-import 'package:cursos/pages/Home/home.dart';
+import 'package:cursos/common/values/colors.dart';
 import 'package:cursos/pages/Welcome/bloc/welcome_blocs.dart';
 import 'package:cursos/pages/Welcome/bloc/welcome_events.dart';
 import 'package:cursos/pages/Welcome/bloc/welcome_states.dart';
@@ -39,25 +39,25 @@ class _WelcomeState extends State<Welcome> {
                       _page(
                         1,
                         context,
-                        "Next",
-                        "First see Learning",
-                        "Forget about a of paper all knowledget in on learning",
+                        "Próximo",
+                        "Aprendizado Inovador",
+                        "Esqueça sobre métodos antigos de aprendizagem",
                         "assets/images/reading.png",
                       ),
                       _page(
                         2,
                         context,
-                        "Next",
-                        "Connect With Everyone",
-                        "Always keep in touch with your tutor & friend. Let's get connect",
+                        "Próximo",
+                        "Conecte-se com todo mundo",
+                        "Sempre conectado com seu professores e amigos.",
                         "assets/images/boy.png",
                       ),
                       _page(
                           3,
                           context,
-                          "Get Started",
-                          "Always Fascinated Learning",
-                          "Anywhere, anytime. The time is at our discription so study whenever you want",
+                          "Entrar",
+                          "Um apredizado fascinante",
+                          "Em qualquer lugar a qualquer tempo, o tempo é a nossa descrição, então estude quando quiser!",
                           "assets/images/man.png"),
                     ],
                   ),
@@ -68,8 +68,8 @@ class _WelcomeState extends State<Welcome> {
                       dotsCount: 3,
                       mainAxisAlignment: MainAxisAlignment.center,
                       decorator: DotsDecorator(
-                          color: Colors.grey,
-                          activeColor: Colors.blue,
+                          color: AppColors.primaryThridElementText,
+                          activeColor: AppColors.primaryElement,
                           size: const Size.square(8.0),
                           activeSize: const Size(15.0, 8.0),
                           activeShape: RoundedRectangleBorder(
@@ -101,7 +101,7 @@ class _WelcomeState extends State<Welcome> {
           child: Text(
             title,
             style: TextStyle(
-                color: Colors.black,
+                color: AppColors.primaryText,
                 fontSize: 24.sp,
                 fontWeight: FontWeight.normal),
           ),
@@ -112,7 +112,7 @@ class _WelcomeState extends State<Welcome> {
           child: Text(
             subTitle,
             style: TextStyle(
-                color: Colors.black.withOpacity(0.5),
+                color: AppColors.primarySecondaryElementText,
                 fontSize: 16.sp,
                 fontWeight: FontWeight.normal),
           ),
@@ -126,8 +126,6 @@ class _WelcomeState extends State<Welcome> {
                   curve: Curves.decelerate);
             } else {
               //jump to a new page
-              // Navigator.of(context)
-              //     .push(MaterialPageRoute(builder: (context) => Home()));
               Navigator.of(context)
                   .pushNamedAndRemoveUntil("signIn", (route) => false);
             }
@@ -137,7 +135,7 @@ class _WelcomeState extends State<Welcome> {
             width: 375.w,
             height: 50.h,
             decoration: BoxDecoration(
-              color: Colors.blue,
+              color: AppColors.primaryElement,
               borderRadius: BorderRadius.all(Radius.circular(15.w)),
               boxShadow: [
                 BoxShadow(

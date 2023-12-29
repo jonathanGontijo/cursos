@@ -1,4 +1,3 @@
-import 'package:cursos/pages/Home/home.dart';
 import 'package:cursos/pages/Welcome/bloc/welcome_blocs.dart';
 import 'package:cursos/pages/Welcome/welcome.dart';
 import 'package:cursos/pages/sign_in/sign_in.dart';

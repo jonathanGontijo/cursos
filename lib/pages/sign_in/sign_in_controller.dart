@@ -31,17 +31,17 @@ class SignInController {
             password: password,
           );
           if (crendential.user == null) {
-            toastInfo(msg: "Usuario não encontrado");
+            toastInfo(msg: "Usuário não encontrado");
             return;
           }
           if (!crendential.user!.emailVerified) {
-            toastInfo(msg: "Usuario não verificado");
+            toastInfo(msg: "Usuário não verificado");
             return;
           }
           var user = crendential.user;
           if (user != null) {
             // we got verified user from firebase
-            print('Usuario existente');
+            print('Usuário existente');
             return;
           } else {
             // we have error getting user from firebase

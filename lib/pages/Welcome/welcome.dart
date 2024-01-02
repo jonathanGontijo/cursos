@@ -56,7 +56,7 @@ class _WelcomeState extends State<Welcome> {
                           3,
                           context,
                           "Entrar",
-                          "Um apredizado fascinante",
+                          "Um aprendizado fascinante",
                           "Em qualquer lugar a qualquer tempo, o tempo é a nossa descrição, então estude quando quiser!",
                           "assets/images/man.png"),
                     ],

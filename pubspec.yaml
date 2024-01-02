@@ -40,7 +40,7 @@ dependencies:
   dots_indicator:
   intl:
   cloud_firestore: ^4.8.2
-  #firebase_auth: ^4.2.2
+  firebase_auth: ^4.2.2
   fluttertoast: ^8.2.1
   shared_preferences: ^2.1.0
   flutter_easyloading: ^3.0.5
@@ -49,6 +49,8 @@ dependencies:
   video_player: ^2.6.1
   equatable: ^2.0.5
   cached_network_image: ^3.2.3
+  firebase_core: ^2.24.2
+  
 
 dev_dependencies:
   flutter_test:

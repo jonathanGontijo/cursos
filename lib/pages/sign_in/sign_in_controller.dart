@@ -42,6 +42,7 @@ class SignInController {
           if (user != null) {
             // we got verified user from firebase
             print('Usuário existente');
+            toastInfo(msg: "Usuário confirmado");
             return;
           } else {
             // we have error getting user from firebase
@@ -54,7 +55,6 @@ class SignInController {
             toastInfo(msg: "Usuario nao encontrado por esse email");
             return;
           } else if (e.code == 'wrong-password') {
-            print('Senha invalida para esse email.');
             toastInfo(msg: "wrong password for this user");
             return;
           } else if (e.code == 'invalid-email') {

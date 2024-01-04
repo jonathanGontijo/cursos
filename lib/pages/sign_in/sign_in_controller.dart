@@ -1,4 +1,6 @@
+import 'package:cursos/common/values/constant.dart';
 import 'package:cursos/common/widgets/flutter_toast.dart';
+import 'package:cursos/global.dart';
 import 'package:cursos/pages/sign_in/bloc/sign_in_blocs.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +43,8 @@ class SignInController {
           var user = crendential.user;
           if (user != null) {
             // we got verified user from firebase
-
+            Global.storageService
+                .setString(AppConstants.STORAGE_USER_TOKEN_KEY, "12345678");
             Navigator.of(context)
                 .pushNamedAndRemoveUntil("/application", (route) => false);
             toastInfo(msg: "Usuário confirmado");

@@ -1,4 +1,5 @@
 import 'package:cursos/common/routes/names.dart';
+import 'package:cursos/global.dart';
 import 'package:cursos/pages/Welcome/bloc/welcome_blocs.dart';
 import 'package:cursos/pages/Welcome/welcome.dart';
 import 'package:cursos/pages/application/application_page.dart';
@@ -57,8 +58,20 @@ class AppPages {
 //a modal that cover entire screen as we click
   static MaterialPageRoute GenerateRouteSettings(RouteSettings settings) {
     if (settings.name != null) {
+      //check for route name macthing when navigator gets triggered.
       var result = routes().where((element) => element.route == settings.name);
       if (result.isNotEmpty) {
+        bool deviceFirstOpen = Global.storageService.getDeviceFirstOpen();
+        if (result.first.route == AppRoutes.INITIAL && deviceFirstOpen) {
+          bool isLoggedin = Global.storageService.getIsLoggedIn();
+          if (isLoggedin) {
+            return MaterialPageRoute(
+                builder: (_) => const ApplicationPage(), settings: settings);
+          }
+
+          return MaterialPageRoute(
+              builder: (_) => const SignIn(), settings: settings);
+        }
         return MaterialPageRoute(
             builder: (_) => result.first.page, settings: settings);
       }

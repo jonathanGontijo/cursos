@@ -58,10 +58,9 @@ class _SignInState extends State<SignIn> {
                   forgotPassword(),
                   buildLogInAndRegButton("Log In", "login", () {
                     SignInController(context: context).handleSignIn('email');
-                    print("login button");
                   }),
                   buildLogInAndRegButton("Sign Up", "register", () {
-                    Navigator.of(context).pushNamed("register");
+                    Navigator.of(context).pushNamed("/register");
                   }),
                 ],
               ),

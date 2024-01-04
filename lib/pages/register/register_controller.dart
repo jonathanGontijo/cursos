@@ -9,7 +9,7 @@ class RegisterController {
   const RegisterController({required this.context});
 
   Future<void> handleEmailRegister() async {
-    final state = context.read<RegisterBlocs>().state;
+    final state = context.read<RegisterBloc>().state;
     String userName = state.userName;
     String email = state.email;
     String password = state.password;

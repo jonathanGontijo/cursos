@@ -12,7 +12,7 @@ class AppBlocProviders {
           create: (context) => SignInBloc(),
         ),
         BlocProvider(
-          create: (context) => RegisterBlocs(),
+          create: (context) => RegisterBloc(),
         ),
       ];
 }

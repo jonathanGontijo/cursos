@@ -17,8 +17,7 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<RegisterBlocs, RegisterStates>(
-        builder: (context, state) {
+    return BlocBuilder<RegisterBloc, RegisterStates>(builder: (context, state) {
       return Container(
         color: Colors.white,
         child: SafeArea(
@@ -46,26 +45,26 @@ class _RegisterState extends State<Register> {
                             "Entre com seu nome de usuário", "username", "user",
                             (value) {
                           context
-                              .read<RegisterBlocs>()
+                              .read<RegisterBloc>()
                               .add(UserNameEvent(value));
                         }),
                         reusableText("Email"),
                         buildTextField("Entre com sue email", "email", "user",
                             (value) {
-                          context.read<RegisterBlocs>().add(EmailEvent(value));
+                          context.read<RegisterBloc>().add(EmailEvent(value));
                         }),
                         reusableText("Senha"),
                         buildTextField(
                             "Entre com sua senha", "password", "lock", (value) {
                           context
-                              .read<RegisterBlocs>()
+                              .read<RegisterBloc>()
                               .add(PasswordEvent(value));
                         }),
                         reusableText("Confirmar senha"),
                         buildTextField(
                             "Entre com sua senha", "password", "lock", (value) {
                           context
-                              .read<RegisterBlocs>()
+                              .read<RegisterBloc>()
                               .add(RePasswordEvent(value));
                         }),
                         reusableText(

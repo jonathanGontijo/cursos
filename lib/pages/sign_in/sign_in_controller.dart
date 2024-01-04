@@ -41,7 +41,9 @@ class SignInController {
           var user = crendential.user;
           if (user != null) {
             // we got verified user from firebase
-            print('Usuário existente');
+
+            Navigator.of(context)
+                .pushNamedAndRemoveUntil("/application", (route) => false);
             toastInfo(msg: "Usuário confirmado");
             return;
           } else {
@@ -51,14 +53,12 @@ class SignInController {
           }
         } on FirebaseAuthException catch (e) {
           if (e.code == 'user-not-found') {
-            print('Usuario nao encontrado por esse email.');
             toastInfo(msg: "Usuario nao encontrado por esse email");
             return;
           } else if (e.code == 'wrong-password') {
             toastInfo(msg: "wrong password for this user");
             return;
           } else if (e.code == 'invalid-email') {
-            print('Seu email esta no formato errado');
             toastInfo(msg: "your email format is wrong");
             return;
           }

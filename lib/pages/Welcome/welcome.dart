@@ -127,7 +127,7 @@ class _WelcomeState extends State<Welcome> {
             } else {
               //jump to a new page
               Navigator.of(context)
-                  .pushNamedAndRemoveUntil("signIn", (route) => false);
+                  .pushNamedAndRemoveUntil("/sign_in", (route) => false);
             }
           },
           child: Container(

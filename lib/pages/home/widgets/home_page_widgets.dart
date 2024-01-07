@@ -128,3 +128,36 @@ Widget searchView() {
     ],
   );
 }
+
+Widget slidersView() {
+  return Column(
+    children: [
+      Container(
+        margin: EdgeInsets.only(top: 20.h),
+        width: 325.w,
+        height: 160.h,
+        child: PageView(
+          children: [
+            _slidersContainer(),
+            _slidersContainer(path: "assets/icons/image_1.png"),
+            _slidersContainer(path: "assets/icons/image_2.png"),
+          ],
+        ),
+      ),
+    ],
+  );
+}
+
+Widget _slidersContainer({String path = "assets/icons/art.png"}) {
+  return Container(
+    width: 325.w,
+    height: 160.h,
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(20.h),
+      image: DecorationImage(
+        fit: BoxFit.fill,
+        image: AssetImage(path),
+      ),
+    ),
+  );
+}

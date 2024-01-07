@@ -35,7 +35,7 @@ class _RegisterState extends State<Register> {
                       child: reusableText(
                           "Entre com os dados abaixo para registrar")),
                   Container(
-                    margin: EdgeInsets.only(top: 30.h),
+                    margin: EdgeInsets.only(top: 40.h),
                     padding: EdgeInsets.only(left: 25.w, right: 25.w),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,

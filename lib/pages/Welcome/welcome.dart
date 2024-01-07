@@ -59,7 +59,7 @@ class _WelcomeState extends State<Welcome> {
                           context,
                           "Entrar",
                           "Um aprendizado fascinante",
-                          "Em qualquer lugar a qualquer tempo, o tempo é a nossa descrição, então estude quando quiser!",
+                          "O tempo é a nossa descrição, então estude quando quiser!",
                           "assets/images/man.png"),
                     ],
                   ),
@@ -137,7 +137,7 @@ class _WelcomeState extends State<Welcome> {
             }
           },
           child: Container(
-            margin: EdgeInsets.only(top: 100.h, left: 25.w, right: 25.w),
+            margin: EdgeInsets.only(top: 150.h, left: 25.w, right: 25.w),
             width: 375.w,
             height: 50.h,
             decoration: BoxDecoration(
@@ -163,7 +163,7 @@ class _WelcomeState extends State<Welcome> {
               ),
             ),
           ),
-        )
+        ),
       ],
     );
   }

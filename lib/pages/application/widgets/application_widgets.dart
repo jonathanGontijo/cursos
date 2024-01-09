@@ -1,5 +1,6 @@
 import 'package:cursos/common/values/colors.dart';
 import 'package:cursos/pages/home/home_page.dart';
+import 'package:cursos/pages/profile/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -9,7 +10,7 @@ Widget buildPage(int index) {
     Center(child: Text('Search')),
     Center(child: Text('Course')),
     Center(child: Text('Chat')),
-    Center(child: Text('Profile')),
+    const ProfilePage()
   ];
   return _widgets[index];
 }

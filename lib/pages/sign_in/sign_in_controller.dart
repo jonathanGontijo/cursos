@@ -1,3 +1,5 @@
+import 'package:cursos/common/apis/user_api.dart';
+import 'package:cursos/common/entities/entities.dart';
 import 'package:cursos/common/values/constant.dart';
 import 'package:cursos/common/widgets/flutter_toast.dart';
 import 'package:cursos/global.dart';
@@ -5,6 +7,7 @@ import 'package:cursos/pages/sign_in/bloc/sign_in_blocs.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class SignInController {
   final BuildContext context;
@@ -42,13 +45,26 @@ class SignInController {
           }
           var user = crendential.user;
           if (user != null) {
+            String? displayName = user.displayName;
+            String? email = user.email;
+            String? id = user.uid;
+            String? photoUrl = user.photoURL;
+
+            print('my url is ${photoUrl}');
+
+            LoginRequestEntity loginRequestEntity = LoginRequestEntity();
+            loginRequestEntity.avatar = photoUrl;
+            loginRequestEntity.name = displayName;
+            loginRequestEntity.email = email;
+            loginRequestEntity.open_id = id;
+            loginRequestEntity.type = 1;
+
+            asyncPostAllData(loginRequestEntity);
+
             // we got verified user from firebase
-            Global.storageService
-                .setString(AppConstants.STORAGE_USER_TOKEN_KEY, "12345678");
-            Navigator.of(context)
-                .pushNamedAndRemoveUntil("/application", (route) => false);
-            toastInfo(msg: "Usuário confirmado");
-            return;
+
+            // toastInfo(msg: "Usuário confirmado");
+            // return;
           } else {
             // we have error getting user from firebase
             toastInfo(msg: "Currently you are not a user of this app");
@@ -69,6 +85,25 @@ class SignInController {
       }
     } catch (e) {
       print(e.toString());
+    }
+  }
+
+  Future<void> asyncPostAllData(LoginRequestEntity loginRequestEntity) async {
+    EasyLoading.show(
+      indicator: CircularProgressIndicator(),
+      maskType: EasyLoadingMaskType.clear,
+      dismissOnTap: true,
+    );
+    var result = await UserAPI.login(params: loginRequestEntity);
+    if (result.code == 200) {
+      try {
+        Global.storageService.setString(
+            AppConstants.STORAGE_USER_TOKEN_KEY, result.data!.access_token!);
+        Navigator.of(context)
+            .pushNamedAndRemoveUntil("/application", (route) => false);
+      } catch (e) {
+        print('Saving local storage error ${e.toString()}');
+      }
     }
   }
 }

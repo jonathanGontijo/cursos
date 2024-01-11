@@ -1,3 +1,4 @@
+import 'package:cursos/common/values/constant.dart';
 import 'package:cursos/common/widgets/flutter_toast.dart';
 import 'package:cursos/pages/register/bloc/register_blocs.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -33,12 +34,14 @@ class RegisterController {
     }
 
     try {
-      final crendential = await FirebaseAuth.instance
+      final credential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
 
-      if (crendential.user != null) {
-        await crendential.user?.sendEmailVerification();
-        await crendential.user?.updateDisplayName(userName);
+      if (credential.user != null) {
+        await credential.user?.sendEmailVerification();
+        await credential.user?.updateDisplayName(userName);
+        String photoUrl = "${AppConstants.SERVER_API_URL}uploads/default.png";
+        await credential.user?.updatePhotoURL(photoUrl);
         toastInfo(
             msg:
                 "Um email foi enviado para ativar a conta,por favor check sua caixa de email e click no link.");

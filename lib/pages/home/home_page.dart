@@ -1,6 +1,7 @@
 import 'package:cursos/common/values/colors.dart';
 import 'package:cursos/pages/home/bloc/home_page_blocs.dart';
 import 'package:cursos/pages/home/bloc/home_page_state.dart';
+import 'package:cursos/pages/home/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:cursos/pages/home/widgets/home_page_widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,11 +15,19 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late HomeController _homeController;
+  @override
+  void initState() {
+    super.initState();
+    _homeController = HomeController(context: context);
+    _homeController.init();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: buildAppBar(),
+      appBar: buildAppBar(_homeController.userProfile.avatar.toString()),
       body: BlocBuilder<HomePageBlocs, HomePageStates>(
         builder: (context, state) {
           return Container(
@@ -33,7 +42,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 SliverToBoxAdapter(
                   child: homePageText(
-                    "Jonathan",
+                    _homeController.userProfile.name!,
                     top: 5,
                   ),
                 ),

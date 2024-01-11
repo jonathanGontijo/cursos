@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class LoginRequestEntity {
@@ -23,16 +22,17 @@ class LoginRequestEntity {
   });
 
   Map<String, dynamic> toJson() => {
-    "type": type,
-    "name": name,
-    "description": description,
-    "email": email,
-    "phone": phone,
-    "avatar": avatar,
-    "open_id": open_id,
-    "online": online,
-  };
+        "type": type,
+        "name": name,
+        "description": description,
+        "email": email,
+        "phone": phone,
+        "avatar": avatar,
+        "open_id": open_id,
+        "online": online,
+      };
 }
+
 //api post response msg
 class UserLoginResponseEntity {
   int? code;
@@ -53,7 +53,6 @@ class UserLoginResponseEntity {
       );
 }
 
-
 // login result
 class UserItem {
   String? access_token;
@@ -62,7 +61,7 @@ class UserItem {
   String? description;
   String? avatar;
   int? online;
-  String? type;
+  int? type;
 
   UserItem({
     this.access_token,
@@ -74,8 +73,7 @@ class UserItem {
     this.type,
   });
 
-  factory UserItem.fromJson(Map<String, dynamic> json) =>
-      UserItem(
+  factory UserItem.fromJson(Map<String, dynamic> json) => UserItem(
         access_token: json["access_token"],
         token: json["token"],
         name: json["name"],
@@ -86,14 +84,14 @@ class UserItem {
       );
 
   Map<String, dynamic> toJson() => {
-    "access_token": access_token,
-    "token": token,
-    "name": name,
-    "description": description,
-    "avatar": avatar,
-    "online": online,
-    "type": type,
-  };
+        "access_token": access_token,
+        "token": token,
+        "name": name,
+        "description": description,
+        "avatar": avatar,
+        "online": online,
+        "type": type,
+      };
 }
 
 class UserData {
@@ -112,9 +110,9 @@ class UserData {
   });
 
   factory UserData.fromFirestore(
-      DocumentSnapshot<Map<String, dynamic>> snapshot,
-      SnapshotOptions? options,
-      ) {
+    DocumentSnapshot<Map<String, dynamic>> snapshot,
+    SnapshotOptions? options,
+  ) {
     final data = snapshot.data();
     return UserData(
       token: data?['token'],
@@ -135,5 +133,3 @@ class UserData {
     };
   }
 }
-
-

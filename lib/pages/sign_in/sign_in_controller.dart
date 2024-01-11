@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cursos/common/apis/user_api.dart';
 import 'package:cursos/common/entities/entities.dart';
 import 'package:cursos/common/values/constant.dart';
@@ -49,9 +51,6 @@ class SignInController {
             String? email = user.email;
             String? id = user.uid;
             String? photoUrl = user.photoURL;
-
-            print('my url is ${photoUrl}');
-
             LoginRequestEntity loginRequestEntity = LoginRequestEntity();
             loginRequestEntity.avatar = photoUrl;
             loginRequestEntity.name = displayName;
@@ -98,12 +97,18 @@ class SignInController {
     if (result.code == 200) {
       try {
         Global.storageService.setString(
+            AppConstants.STORAGE_USER_PROFILE_KEY, jsonEncode(result.data!));
+        Global.storageService.setString(
             AppConstants.STORAGE_USER_TOKEN_KEY, result.data!.access_token!);
+        EasyLoading.dismiss();
         Navigator.of(context)
             .pushNamedAndRemoveUntil("/application", (route) => false);
       } catch (e) {
         print('Saving local storage error ${e.toString()}');
       }
+    } else {
+      EasyLoading.dismiss();
+      toastInfo(msg: "Error desconhecido");
     }
   }
 }

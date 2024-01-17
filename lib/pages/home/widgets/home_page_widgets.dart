@@ -1,4 +1,6 @@
+import 'package:cursos/common/entities/course.dart';
 import 'package:cursos/common/values/colors.dart';
+import 'package:cursos/common/values/constant.dart';
 import 'package:cursos/pages/home/bloc/home_page_blocs.dart';
 import 'package:cursos/pages/home/bloc/home_page_events.dart';
 import 'package:cursos/pages/home/bloc/home_page_state.dart';
@@ -28,7 +30,7 @@ AppBar buildAppBar(String avatar) {
               height: 40.h,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: NetworkImage(avatar),
+                  image: NetworkImage("${AppConstants.SERVER_API_URL}$avatar"),
                 ),
               ),
             ),
@@ -252,23 +254,20 @@ Widget _reusableMenuText(String menuText,
 
 //course grid
 
-Widget courseGrid() {
+Widget courseGrid(CourseItem item) {
   return Container(
     padding: EdgeInsets.all(12.w),
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(15.w),
-      image: const DecorationImage(
-        fit: BoxFit.fill,
-        image: AssetImage(
-          "assets/icons/image_1.png",
-        ),
-      ),
+      image: DecorationImage(
+          fit: BoxFit.fill,
+          image: NetworkImage(AppConstants.SERVER_UPLOADS + item.thumbnail!)),
     ),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         Text(
-          "Melhor curso para TI",
+          item.name ?? "",
           maxLines: 1,
           overflow: TextOverflow.fade,
           textAlign: TextAlign.left,
@@ -283,7 +282,7 @@ Widget courseGrid() {
           height: 5.h,
         ),
         Text(
-          "Cursos de Flutter",
+          item.description ?? "",
           maxLines: 1,
           overflow: TextOverflow.fade,
           textAlign: TextAlign.left,

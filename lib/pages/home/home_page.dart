@@ -25,66 +25,69 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: buildAppBar(_homeController.userProfile.avatar.toString()),
-      body: BlocBuilder<HomePageBlocs, HomePageStates>(
-        builder: (context, state) {
-          return Container(
-            margin: EdgeInsets.symmetric(vertical: 0, horizontal: 25.w),
-            child: CustomScrollView(
-              slivers: [
-                SliverToBoxAdapter(
-                  child: homePageText(
-                    "Olá",
-                    color: AppColors.primaryThridElementText,
+    return _homeController.userProfile != null
+        ? Scaffold(
+            backgroundColor: Colors.white,
+            appBar: buildAppBar(_homeController.userProfile!.avatar.toString()),
+            body: BlocBuilder<HomePageBlocs, HomePageStates>(
+              builder: (context, state) {
+                //print(state.courseItem[0].name);
+                return Container(
+                  margin: EdgeInsets.symmetric(vertical: 0, horizontal: 25.w),
+                  child: CustomScrollView(
+                    slivers: [
+                      SliverToBoxAdapter(
+                        child: homePageText(
+                          "Olá",
+                          color: AppColors.primaryThridElementText,
+                        ),
+                      ),
+                      SliverToBoxAdapter(
+                        child: homePageText(
+                          _homeController.userProfile!.name!,
+                          top: 5,
+                        ),
+                      ),
+                      SliverPadding(
+                        padding: EdgeInsets.only(top: 20.h),
+                      ),
+                      SliverToBoxAdapter(
+                        child: searchView(),
+                      ),
+                      SliverToBoxAdapter(
+                        child: slidersView(context, state),
+                      ),
+                      SliverToBoxAdapter(
+                        child: menuView(),
+                      ),
+                      SliverPadding(
+                        padding: EdgeInsets.symmetric(
+                            vertical: 18.h, horizontal: 0.w),
+                        sliver: SliverGrid(
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            mainAxisSpacing: 15,
+                            crossAxisSpacing: 15,
+                            childAspectRatio: 1.6,
+                          ),
+                          delegate: SliverChildBuilderDelegate(
+                            childCount: state.courseItem.length,
+                            (BuildContext context, int index) {
+                              return GestureDetector(
+                                onTap: () {},
+                                child: courseGrid(state.courseItem[index]),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-                SliverToBoxAdapter(
-                  child: homePageText(
-                    _homeController.userProfile.name!,
-                    top: 5,
-                  ),
-                ),
-                SliverPadding(
-                  padding: EdgeInsets.only(top: 20.h),
-                ),
-                SliverToBoxAdapter(
-                  child: searchView(),
-                ),
-                SliverToBoxAdapter(
-                  child: slidersView(context, state),
-                ),
-                SliverToBoxAdapter(
-                  child: menuView(),
-                ),
-                SliverPadding(
-                  padding:
-                      EdgeInsets.symmetric(vertical: 18.h, horizontal: 0.w),
-                  sliver: SliverGrid(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 15,
-                      crossAxisSpacing: 15,
-                      childAspectRatio: 1.6,
-                    ),
-                    delegate: SliverChildBuilderDelegate(
-                      childCount: 4,
-                      (BuildContext context, int index) {
-                        return GestureDetector(
-                          onTap: () {},
-                          child: courseGrid(),
-                        );
-                      },
-                    ),
-                  ),
-                ),
-              ],
+                );
+              },
             ),
-          );
-        },
-      ),
-    );
+          )
+        : Container();
   }
 }

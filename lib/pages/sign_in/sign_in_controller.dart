@@ -5,6 +5,7 @@ import 'package:cursos/common/entities/entities.dart';
 import 'package:cursos/common/values/constant.dart';
 import 'package:cursos/common/widgets/flutter_toast.dart';
 import 'package:cursos/global.dart';
+import 'package:cursos/pages/home/home_controller.dart';
 import 'package:cursos/pages/sign_in/bloc/sign_in_blocs.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -59,6 +60,9 @@ class SignInController {
             loginRequestEntity.type = 1;
 
             asyncPostAllData(loginRequestEntity);
+            if (context.mounted) {
+              await HomeController(context: context).init();
+            }
 
             // we got verified user from firebase
 

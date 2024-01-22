@@ -248,7 +248,7 @@ Widget _reusableMenuText(String menuText,
       border: Border.all(color: backgroundColor),
     ),
     child: reusableText(menuText,
-        color: textColor, FontWeight: FontWeight.normal, fontSize: 11),
+        color: textColor, fontWeight: FontWeight.normal, fontSize: 11),
   );
 }
 

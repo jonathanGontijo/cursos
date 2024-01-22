@@ -6,13 +6,13 @@ import '../values/colors.dart';
 Widget reusableText(String text,
     {Color color = AppColors.primaryText,
     double fontSize = 16,
-    FontWeight = FontWeight.bold}) {
+    FontWeight fontWeight = FontWeight.bold}) {
   return Container(
     child: Text(
       text,
       style: TextStyle(
         color: color,
-        fontWeight: FontWeight,
+        fontWeight: fontWeight,
         fontSize: fontSize.sp,
       ),
     ),

@@ -1,5 +1,7 @@
 import 'package:cursos/common/values/colors.dart';
+import 'package:cursos/common/values/constant.dart';
 import 'package:cursos/common/widgets/base_text_widget.dart';
+import 'package:cursos/pages/course/course_detail/bloc/course_detail_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -10,17 +12,15 @@ AppBar buildAppBar() {
   );
 }
 
-Widget thumbNail() {
+Widget thumbNail(CourseDetailStates states) {
   return Container(
     width: 325.w,
     height: 200.h,
-    decoration: const BoxDecoration(
+    decoration: BoxDecoration(
       image: DecorationImage(
-        fit: BoxFit.fitHeight,
-        image: AssetImage(
-          "assets/icons/image_1.png",
-        ),
-      ),
+          fit: BoxFit.fitHeight,
+          image: NetworkImage(
+              "${AppConstants.SERVER_UPLOADS}${states.courseItem?.thumbnail}")),
     ),
   );
 }
@@ -84,9 +84,9 @@ Widget _iconAndNum(String iconPath, int num) {
   );
 }
 
-Widget descriptionText() {
+Widget descriptionText(CourseDetailStates states) {
   return reusableText(
-    "Descrição do CursoDescrição do CursoDescrição do CursoDescrição do CursoDescrição do CursoDescrição do CursoDescrição do CursoDescrição do CursoDescrição do CursoDescrição do CursoDescrição do CursoDescrição do CursoDescrição do CursoDescrição do Curso",
+    "${states.courseItem?.description}",
     color: AppColors.primaryThridElementText,
     fontWeight: FontWeight.normal,
     fontSize: 11.sp,

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cursos/common/values/colors.dart';
 import 'package:cursos/common/values/constant.dart';
 import 'package:cursos/common/widgets/base_text_widget.dart';
@@ -19,8 +20,8 @@ Widget thumbNail(CourseDetailStates states) {
     decoration: BoxDecoration(
       image: DecorationImage(
           fit: BoxFit.fitHeight,
-          image: NetworkImage(
-              "${AppConstants.SERVER_UPLOADS}${states.courseItem?.thumbnail}")),
+          image: CachedNetworkImageProvider(
+              "${AppConstants.SERVER_UPLOADS}${states.courseItem!.thumbnail}")),
     ),
   );
 }
@@ -86,7 +87,7 @@ Widget _iconAndNum(String iconPath, int num) {
 
 Widget descriptionText(CourseDetailStates states) {
   return reusableText(
-    "${states.courseItem?.description}",
+    "${states.courseItem!.description}",
     color: AppColors.primaryThridElementText,
     fontWeight: FontWeight.normal,
     fontSize: 11.sp,
@@ -121,14 +122,14 @@ Widget courseSummaryTitle() {
   return reusableText("O Curso Inclui.", fontSize: 16.sp);
 }
 
+Widget courseSummaryView(BuildContext context, CourseDetailStates state) {
 //setting sections buttons
-var imagesInfo = <String, String>{
-  "36 Horas de video": "video_detail.png",
-  "Total de aulas": "file_detail.png",
-  "67 Download Resources": "download_detail.png",
-};
-
-Widget courseSummaryView(BuildContext context) {
+  var imagesInfo = <String, String>{
+    "${state.courseItem!.video_len ?? "0"} Horas de video": "video_detail.png",
+    "Total ${state.courseItem!.lesson_num ?? "0"} lições": "file_detail.png",
+    "${state.courseItem!.down_num ?? "0"} recursos para download":
+        "download_detail.png",
+  };
   return Column(
     children: [
       ...List.generate(

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cursos/common/entities/course.dart';
 import 'package:cursos/common/values/colors.dart';
 import 'package:cursos/common/values/constant.dart';
@@ -261,7 +262,8 @@ Widget courseGrid(CourseItem item) {
       borderRadius: BorderRadius.circular(15.w),
       image: DecorationImage(
           fit: BoxFit.fill,
-          image: NetworkImage(AppConstants.SERVER_UPLOADS + item.thumbnail!)),
+          image: CachedNetworkImageProvider(
+              AppConstants.SERVER_UPLOADS + item.thumbnail!)),
     ),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.end,
